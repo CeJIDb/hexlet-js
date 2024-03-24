@@ -1,3 +1,3 @@
-import printLast from "./src/index.js";
+import printLast from './src/index.js';
 
-printLast();
+console.log(printLast());
