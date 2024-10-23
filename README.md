@@ -1,1 +1,1 @@
-Мой первый проект на Хекслете
+My hexlet js educational projects.
