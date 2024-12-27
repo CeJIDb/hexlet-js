@@ -38,6 +38,7 @@
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
-    "no-restricted-syntax": 0
+    "no-restricted-syntax": 0,
+    "max-len": 0
   }
 }
