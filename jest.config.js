@@ -1,11 +1,8 @@
-module.exports = {
+export default {
+  transform: {},
   testEnvironment: 'node',
-  verbose: true,
-  transform: {
-    '^.+\\.js$': 'babel-jest',
+  extensionsToTreatAsEsm: ['.js'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
   },
-  testMatch: [
-    '**/tests/**/*.test.js',
-    '**/?(*.)+(spec|test).[jt]s?(x)',
-  ],
 };

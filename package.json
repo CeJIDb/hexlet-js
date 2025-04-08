@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Мой первый проект на Хекслете",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "jest"
   },
