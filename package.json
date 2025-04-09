@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@hexlet/immutable-fs-trees": "^0.7.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
