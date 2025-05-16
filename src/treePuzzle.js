@@ -8,25 +8,37 @@ const makeJoints = (tree, parent) => {
   }
 
   const flatChildren = _.flatten(children);
-  const neighbors = [parent, ...flatChildren].filter(
+  const neighbors = [...flatChildren, parent].filter(
     (neighbor) => neighbor && !_.isArray(neighbor),
   );
-  const joints = children.reduce(
-    (acc, child) => ({ ...acc, ...makeJoints(child, leaf) }),
-    {},
-  );
 
-  return { [leaf]: neighbors, ...joints };
+  return {
+    [leaf]: neighbors,
+    ...children.reduce((acc, c) => ({ ...acc, ...makeJoints(c, leaf) }), {}),
+  };
 };
 
-const combineJoints = (jointsMain, jointsOther) => {
-  const combinedJoints = jointsOther.reduce(((acc, joint) => {
-    const 
-  }), _.cloneDeep(jointsMain));
+const buildTreeFromLeaf = (joints, leaf) => {
+  const iter = (current, acc) => {
+    const checked = [...acc, current];
+    const neighbors = (joints[current] || [])
+      .filter((n) => !checked.includes(n))
+      .map((n) => iter(n, checked));
+
+    return _.isEmpty(neighbors) ? [current] : [current, neighbors];
+  };
+
+  return iter(leaf, []);
 };
 
-const combine = (branch1, ...branches) => {
-  const jointsMain = makeJoints(branch1);
-  const jointsOthers = branches.map((branch) => makeJoints(branch));
-  const combinedJoints = combineJoints(jointsMain, jointsOthers);
+const combine = (...branches) => {
+  const root = branches[0][0];
+  const joints = branches.reduce((acc, branch) => {
+    const jointsFromBranch = makeJoints(branch);
+    return _.mergeWith(acc, jointsFromBranch, _.union);
+  }, {});
+
+  return buildTreeFromLeaf(joints, root);
 };
+
+export default combine;
