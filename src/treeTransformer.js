@@ -33,8 +33,8 @@ const buildTreeFromLeaf = (joints, leaf) => {
 };
 
 const transform = (tree, root) => {
-  const leaf = makeJoints(tree);
-  return buildTreeFromLeaf(leaf, root);
+  const joints = makeJoints(tree);
+  return buildTreeFromLeaf(joints, root);
 };
 
 export default transform;
